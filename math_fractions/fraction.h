@@ -36,11 +36,15 @@ public:
 	fraction& operator-(const fraction& f);
 	fraction& operator*(const fraction& f);
 	fraction& operator/(const fraction& f);
+	fraction& operator+=(const fraction& f);
+	fraction& operator-=(const fraction& f);
 
 	fraction& operator+(const int& n);
 	fraction& operator-(const int& n);
 	fraction& operator*(const int& n);
 	fraction& operator/(const int& n);
+	fraction& operator+=(const int& n);
+	fraction& operator-=(const int& n);
 
 	// Conversions
 	operator std::string() const;

@@ -138,6 +138,26 @@ fraction& fraction::operator/(const int& n)
 	return *this / create_fraction(n, 1);
 }
 
+fraction& fraction::operator-=(const int& n)
+{
+	return *this - n;
+}
+
+fraction& fraction::operator+=(const int& n)
+{
+	return *this + n;
+}
+
+fraction& fraction::operator-=(const fraction& f)
+{
+	return *this - f;
+}
+
+fraction& fraction::operator+=(const fraction& f)
+{
+	return *this + f;
+}
+
 bool fraction::operator<=(const fraction& f) const
 {
 	return *this == f || *this < f;

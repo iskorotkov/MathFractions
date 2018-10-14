@@ -3,12 +3,12 @@
 
 int main()
 {
-	int a, b;
-	std::cin >> a >> b;
-	auto f = fraction::create_fraction(a, b);
-	std::cout << int(f.get_sign()) << " " << f.get_numerator() << " " << f.get_denominator() << std::endl;
-	std::cout << f << std::endl;
-	std::string s(f);
-	std::cout << s << std::endl;
-	std::cout << double(f);
+	int n;
+	fraction sum = fraction::create_fraction(0, 1);
+	std::cin >> n;
+	for (auto i = 0; i < n; ++i)
+	{
+		sum += fraction::create_fraction(1, i + 1);
+	}
+	std::cout << sum;
 }
