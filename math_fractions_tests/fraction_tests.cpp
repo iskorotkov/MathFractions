@@ -640,3 +640,35 @@ namespace fraction_and_numbers_arithmetic
 		}
 	};
 }
+
+namespace sum_of_fractions
+{
+	TEST_CLASS(n_element)
+	{
+		fraction sum_of_n_fractions(int n)
+		{
+			fraction sum;
+			for (auto i = 0; i < n; ++i)
+			{
+				sum += fraction(1, i + 1);
+			}
+			return sum;
+		}
+
+	public:
+		TEST_METHOD(n1)
+		{
+			Assert::AreEqual(fraction(1, 1), sum_of_n_fractions(1));
+		}
+
+		TEST_METHOD(n2)
+		{
+			Assert::AreEqual(fraction(3, 2), sum_of_n_fractions(2));
+		}
+
+		TEST_METHOD(n3)
+		{
+			Assert::AreEqual(fraction(11, 6), sum_of_n_fractions(3));
+		}
+	};
+}

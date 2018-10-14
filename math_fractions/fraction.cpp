@@ -7,17 +7,10 @@
 #include <exception>
 #include "fraction_utility.h"
 
+// TODO: Obsolete factory method
 fraction fraction::create_fraction(int numerator, int denominator)
 {
-	if (denominator == 0)
-	{
-		// TODO: create class for exception
-		throw std::exception("Division by zero");
-	}
-
-	auto sign = numerator * denominator > 0 ? number_sign::positive : numerator == 0 ? number_sign::zero : number_sign::negative;
-	return fraction(abs(numerator), abs(denominator), sign)
-		.reduce();
+	return fraction(numerator, denominator);
 }
 
 unsigned int fraction::get_numerator() const
@@ -198,6 +191,20 @@ bool fraction::is_common() const
 fraction::operator double() const
 {
 	return double(sign) * numerator / denominator;
+}
+
+fraction::fraction(int numerator, int denominator)
+{
+	if (denominator == 0)
+	{
+		// TODO: create class for exception
+		throw std::exception("Division by zero");
+	}
+
+	sign = numerator * denominator > 0 ? number_sign::positive : numerator == 0 ? number_sign::zero : number_sign::negative;
+	this->numerator = abs(numerator);
+	this->denominator = abs(denominator);
+	reduce();
 }
 
 fraction& fraction::reduce()

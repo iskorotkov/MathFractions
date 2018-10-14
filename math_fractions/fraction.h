@@ -8,6 +8,10 @@ class fraction
 
 public:
 	// Constructors
+	fraction() : fraction(0, 1) {}
+	fraction(int number) : fraction(number, 1) {}
+	fraction(int numerator, int denominator);
+
 	fraction(fraction&& f) = default;
 	fraction(const fraction& f) = default;
 	fraction& operator=(fraction&& f) = default;
@@ -58,7 +62,7 @@ public:
 	bool is_common() const;
 
 private:
-	fraction(unsigned int numerator, unsigned int denominator, number_sign sign = number_sign::positive) : numerator(numerator), denominator(denominator), sign(sign) {}
+	fraction(unsigned int numerator, unsigned int denominator, number_sign sign) : numerator(numerator), denominator(denominator), sign(sign) {}
 
 	unsigned int numerator = 1;
 	unsigned int denominator = 1;
