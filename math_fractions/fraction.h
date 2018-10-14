@@ -1,7 +1,6 @@
 #pragma once
-
-class ostream;
-class string;
+#include <string>
+#include <ostream>
 
 class fraction
 {
@@ -15,24 +14,7 @@ public:
 	fraction& operator=(const fraction& f) = default;
 
 	// Factory
-	static fraction&& create_fraction(int numerator, int denominator);
-	//
-	// 	// Relations
-	// 	bool operator==(const fraction& f) const;
-	// 	bool operator!=(const fraction& f) const;
-	// 	bool operator<(const fraction& f) const;
-	// 	bool operator>(const fraction& f) const;
-	// 	bool operator<=(const fraction& f) const;
-	// 	bool operator>=(const fraction& f) const;
-	//
-	// 	// Arithmetic
-	// 	fraction& operator+(const fraction& f);
-	// 	fraction& operator-(const fraction& f);
-	// 	fraction& operator*(const fraction& f);
-	// 	fraction& operator/(const fraction& f);
-	// 	fraction& operator%(const fraction& f);
-
-	/*void operator<<(ostream& stream) const;*/
+	static fraction create_fraction(int numerator, int denominator);
 
 	// Getters
 	unsigned int get_numerator() const;
@@ -44,7 +26,7 @@ public:
 	bool is_zero() const;
 	bool is_common() const;
 
-	/*std::string to_string() const;*/
+	std::string to_string() const;
 
 private:
 	fraction(unsigned int numerator, unsigned int denominator, number_sign sign = number_sign::positive) : numerator(numerator), denominator(denominator), sign(sign) {}
@@ -53,5 +35,22 @@ private:
 	unsigned int denominator = 1;
 	number_sign sign = number_sign::positive;
 
-	void reduce();
+	fraction& reduce();
 };
+
+// 	// Relations
+// 	bool operator==(const fraction& f) const;
+// 	bool operator!=(const fraction& f) const;
+// 	bool operator<(const fraction& f) const;
+// 	bool operator>(const fraction& f) const;
+// 	bool operator<=(const fraction& f) const;
+// 	bool operator>=(const fraction& f) const;
+//
+// 	// Arithmetic
+// 	fraction& operator+(const fraction& f);
+// 	fraction& operator-(const fraction& f);
+// 	fraction& operator*(const fraction& f);
+// 	fraction& operator/(const fraction& f);
+// 	fraction& operator%(const fraction& f);
+
+std::ostream& operator<<(std::ostream& stream, const fraction& f);

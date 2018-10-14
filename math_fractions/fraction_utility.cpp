@@ -8,20 +8,16 @@ int fraction_utility::greatest_common_divider(const fraction& a, const fraction&
 
 int fraction_utility::greatest_common_divider(unsigned int a, unsigned int b)
 {
-	auto reduce = [](auto bigger, auto smaller, auto multiplier)
-	{
-		bigger -= smaller * multiplier;
-	};
-	while (a != b)
+	while (a && b)
 	{
 		if (a > b)
 		{
-			reduce(a, b, a / b);
+			a %= b;
 		}
 		else
 		{
-			reduce(b, a, b / a);
+			b %= a;
 		}
 	};
-	return a;
+	return a + b;
 }

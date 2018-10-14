@@ -2,18 +2,17 @@
 #include <assert.h>
 #include <utility>
 #include <string>
+#include <ostream>
+#include <sstream>
 #include "fraction_utility.h"
 
-fraction&& fraction::create_fraction(int numerator, int denominator)
+fraction fraction::create_fraction(int numerator, int denominator)
 {
 	assert(denominator);
 
 	auto sign = numerator * denominator > 0 ? number_sign::positive : numerator == 0 ? number_sign::zero : number_sign::negative;
-	numerator = abs(numerator);
-	denominator = abs(denominator);
-
-	using std::move;
-	return move(fraction(move(numerator), move(denominator), move(sign)));
+	return fraction(abs(numerator), abs(denominator), sign)
+		.reduce();
 }
 
 unsigned int fraction::get_numerator() const
@@ -51,25 +50,34 @@ bool fraction::is_common() const
 	return numerator < denominator;
 }
 
-// std::string fraction::to_string() const
-// {
-// 	if (sign == number_sign::zero)
-// 	{
-// 		return std::string("0");
-// 	}
-// 	else if (sign == number_sign::negative)
-// 	{
-// 		return ("-" + numerator + '/' + denominator);
-// 	}
-// 	else
-// 	{
-// 		return "" + numerator + '/' + denominator;
-// 	}
-// }
+std::string fraction::to_string() const
+{
+	if (sign == number_sign::zero)
+	{
+		return { "0" };
+	}
+	else
+	{
+		std::ostringstream out_string;
+		if (sign == number_sign::negative)
+		{
+			out_string << '-';
+		}
+		out_string << numerator << '/' << denominator;
+		return out_string.str();
+	}
+}
 
-void fraction::reduce()
+fraction& fraction::reduce()
 {
 	auto gcd = fraction_utility::greatest_common_divider(numerator, denominator);
 	numerator /= gcd;
 	denominator /= gcd;
+	return *this;
+}
+
+std::ostream& operator<<(std::ostream& stream, const fraction& f)
+{
+	stream << f.to_string();
+	return stream;
 }
