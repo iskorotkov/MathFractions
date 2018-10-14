@@ -117,6 +117,11 @@ fraction& fraction::operator*(const int& n)
 
 fraction& fraction::operator/(const fraction& f)
 {
+	if (f.get_numerator() == 0)
+	{
+		// TODO: create exception class
+		throw std::exception("Division by zero");
+	}
 	auto reversed_f = f;
 	reversed_f.numerator = f.get_denominator();
 	reversed_f.denominator = f.get_numerator();
@@ -130,7 +135,7 @@ fraction& fraction::operator/(const int& n)
 		// TODO: create exception class
 		throw std::exception("Division by zero");
 	}
-	return *this / create_fraction(1, n);
+	return *this / create_fraction(n, 1);
 }
 
 bool fraction::operator<=(const fraction& f) const

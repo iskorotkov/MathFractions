@@ -438,4 +438,206 @@ namespace fraction_arithmetic
 			Assert::AreEqual(expected, f - f2);
 		}
 	};
+
+	TEST_CLASS(multiplication)
+	{
+	public:
+		TEST_METHOD(two_positive)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(15, 32);
+			Assert::AreEqual(expected, f * f2);
+		}
+
+		TEST_METHOD(two_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(-5, 8);
+			auto expected = fraction::create_fraction(15, 32);
+			Assert::AreEqual(expected, f* f2);
+		}
+
+		TEST_METHOD(positive_and_zero)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(0, 1);
+			Assert::AreEqual(expected, f * f2);
+		}
+
+		TEST_METHOD(negative_and_zero)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(0, 1);
+			Assert::AreEqual(expected, f * f2);
+		}
+
+		TEST_METHOD(positive_and_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(-15, 32);
+			Assert::AreEqual(expected, f * f2);
+		}
+
+		TEST_METHOD(two_zero)
+		{
+			auto f = fraction::create_fraction(0, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(0, 1);
+			Assert::AreEqual(expected, f * f2);
+		}
+	};
+
+	TEST_CLASS(division)
+	{
+	public:
+		TEST_METHOD(two_positive)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(6, 5);
+			Assert::AreEqual(expected, f / f2);
+		}
+
+		TEST_METHOD(two_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(-5, 8);
+			auto expected = fraction::create_fraction(6, 5);
+			Assert::AreEqual(expected, f / f2);
+		}
+
+		TEST_METHOD(positive_and_zero)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			Assert::ExpectException<std::exception>([&] {f / f2; });
+		}
+
+		TEST_METHOD(negative_and_zero)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(0, 1);
+			Assert::ExpectException<std::exception>([&] {f / f2; });
+		}
+
+		TEST_METHOD(positive_and_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(-6, 5);
+			Assert::AreEqual(expected, f / f2);
+		}
+
+		TEST_METHOD(two_zero)
+		{
+			auto f = fraction::create_fraction(0, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			Assert::ExpectException<std::exception>([&] {f / f2; });
+		}
+	};
+}
+
+namespace fraction_and_numbers_arithmetic
+{
+	TEST_CLASS(addition)
+	{
+	public:
+		TEST_METHOD(add_positive)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(19, 5);
+			Assert::AreEqual(expected, f + 3);
+		}
+
+		TEST_METHOD(add_negative)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(-11, 5);
+			Assert::AreEqual(expected, f + (-3));
+		}
+
+		TEST_METHOD(add_zero)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			Assert::AreEqual(f, f + 0);
+		}
+	};
+
+	TEST_CLASS(substraction)
+	{
+	public:
+		TEST_METHOD(substract_positive)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(-11, 5);
+			Assert::AreEqual(expected, f - 3);
+		}
+
+		TEST_METHOD(substract_negative)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(19, 5);
+			Assert::AreEqual(expected, f - (-3));
+		}
+
+		TEST_METHOD(substract_zero)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			Assert::AreEqual(f, f - 0);
+		}
+	};
+
+	TEST_CLASS(multiplication)
+	{
+	public:
+		TEST_METHOD(positive)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(12, 5);
+			Assert::AreEqual(expected, f * 3);
+		}
+
+		TEST_METHOD(negative)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(-12, 5);
+			Assert::AreEqual(expected, f * (-3));
+		}
+
+		TEST_METHOD(zero)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(0, 1);
+			Assert::AreEqual(expected, f * 0);
+		}
+	};
+
+	TEST_CLASS(division)
+	{
+	public:
+		TEST_METHOD(positive)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(4, 15);
+			Assert::AreEqual(expected, f / 3);
+		}
+
+		TEST_METHOD(negative)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto expected = fraction::create_fraction(-4, 15);
+			Assert::AreEqual(expected, f / (-3));
+		}
+
+		TEST_METHOD(zero)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			Assert::ExpectException<std::exception>([&] { f / 0; });
+		}
+	};
 }
