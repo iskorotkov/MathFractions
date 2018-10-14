@@ -5,6 +5,11 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
+inline std::wstring ToString(const fraction& t)
+{
+	return t;
+}
+
 namespace creating_fractions
 {
 	TEST_CLASS(assigning_numerator_and_denumerator)
@@ -324,6 +329,113 @@ namespace fraction_comparison
 			auto f2 = fraction::create_fraction(0, 6);
 			Assert::IsTrue(f >= f2);
 			Assert::IsTrue(f <= f2);
+		}
+	};
+}
+
+namespace fraction_arithmetic
+{
+	TEST_CLASS(fraction_addition)
+	{
+	public:
+		TEST_METHOD(two_positive)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(11, 8);
+			Assert::AreEqual(expected, f + f2);
+		}
+
+		TEST_METHOD(two_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(-5, 8);
+			auto expected = fraction::create_fraction(-11, 8);
+			Assert::AreEqual(expected, f + f2);
+		}
+
+		TEST_METHOD(positive_and_zero)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(3, 4);
+			Assert::AreEqual(expected, f + f2);
+		}
+
+		TEST_METHOD(negative_and_zero)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(-3, 4);
+			Assert::AreEqual(expected, f + f2);
+		}
+
+		TEST_METHOD(positive_and_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(-1, 8);
+			Assert::AreEqual(expected, f + f2);
+		}
+
+		TEST_METHOD(two_zero)
+		{
+			auto f = fraction::create_fraction(0, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(0, 1);
+			Assert::AreEqual(expected, f + f2);
+		}
+	};
+
+	TEST_CLASS(fraction_substraction)
+	{
+	public:
+		TEST_METHOD(two_positive)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(1, 8);
+			Assert::AreEqual(expected, f - f2);
+		}
+
+		TEST_METHOD(two_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(-5, 8);
+			auto expected = fraction::create_fraction(-1, 8);
+			Assert::AreEqual(expected, f - f2);
+		}
+
+		TEST_METHOD(positive_and_zero)
+		{
+			auto f = fraction::create_fraction(3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(3, 4);
+			Assert::AreEqual(expected, f - f2);
+		}
+
+		TEST_METHOD(negative_and_zero)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(-3, 4);
+			Assert::AreEqual(expected, f - f2);
+		}
+
+		TEST_METHOD(positive_and_negative)
+		{
+			auto f = fraction::create_fraction(-3, 4);
+			auto f2 = fraction::create_fraction(5, 8);
+			auto expected = fraction::create_fraction(-11, 8);
+			Assert::AreEqual(expected, f - f2);
+		}
+
+		TEST_METHOD(two_zero)
+		{
+			auto f = fraction::create_fraction(0, 4);
+			auto f2 = fraction::create_fraction(0, 8);
+			auto expected = fraction::create_fraction(0, 1);
+			Assert::AreEqual(expected, f - f2);
 		}
 	};
 }

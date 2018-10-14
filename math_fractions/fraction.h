@@ -17,9 +17,11 @@ public:
 	static fraction create_fraction(int numerator, int denominator);
 
 	// Getters
+	// TODO: inline methods
 	unsigned int get_numerator() const;
 	unsigned int get_denominator() const;
 	number_sign get_sign() const;
+	int get_sign_value() const;
 
 	// Relations
 	bool operator==(const fraction& f) const;
@@ -29,17 +31,23 @@ public:
 	bool operator<=(const fraction& f) const;
 	bool operator>=(const fraction& f) const;
 
-	// 	// Arithmetic
-	// 	fraction& operator+(const fraction& f);
-	// 	fraction& operator-(const fraction& f);
-	// 	fraction& operator*(const fraction& f);
-	// 	fraction& operator/(const fraction& f);
-	// 	fraction& operator%(const fraction& f);
+	// Arithmetic
+	fraction& operator+(const fraction& f);
+	fraction& operator-(const fraction& f);
+	fraction& operator*(const fraction& f);
+	fraction& operator/(const fraction& f);
 
-		// Conversions
+	fraction& operator+(const int& n);
+	fraction& operator-(const int& n);
+	fraction& operator*(const int& n);
+	fraction& operator/(const int& n);
+
+	// Conversions
 	operator std::string() const;
+	operator std::wstring() const;
 	explicit operator double() const;
 
+	// TODO: inline methods
 	bool is_positive() const;
 	bool is_negative() const;
 	bool is_zero() const;
@@ -53,6 +61,7 @@ private:
 	number_sign sign = number_sign::positive;
 
 	fraction& reduce();
+	fraction& flip_sign();
 };
 
 std::ostream& operator<<(std::ostream& stream, const fraction& f);
