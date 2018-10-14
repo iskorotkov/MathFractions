@@ -4,11 +4,16 @@
 #include <string>
 #include <ostream>
 #include <sstream>
+#include <exception>
 #include "fraction_utility.h"
 
 fraction fraction::create_fraction(int numerator, int denominator)
 {
-	assert(denominator);
+	if (denominator == 0)
+	{
+		// TODO: create class for exception
+		throw std::exception("Division by zero");
+	}
 
 	auto sign = numerator * denominator > 0 ? number_sign::positive : numerator == 0 ? number_sign::zero : number_sign::negative;
 	return fraction(abs(numerator), abs(denominator), sign)
