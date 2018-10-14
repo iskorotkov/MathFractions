@@ -10,5 +10,5 @@ int main()
 	std::cout << f << std::endl;
 	std::string s(f);
 	std::cout << s << std::endl;
-	std::cout
+	std::cout << double(f);
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28124.53
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "math_fractions", "math_fractions\math_fractions.vcxproj", "{EF591318-2189-471B-8B29-6CA67E92AEE9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "math_fractions_tests", "math_fractions_tests\math_fractions_tests.vcxproj", "{62A53999-70D1-4414-A11C-628BBA20AFDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{EF591318-2189-471B-8B29-6CA67E92AEE9}.Release|x64.Build.0 = Release|x64
 		{EF591318-2189-471B-8B29-6CA67E92AEE9}.Release|x86.ActiveCfg = Release|Win32
 		{EF591318-2189-471B-8B29-6CA67E92AEE9}.Release|x86.Build.0 = Release|Win32
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Debug|x64.ActiveCfg = Debug|x64
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Debug|x64.Build.0 = Debug|x64
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Debug|x86.ActiveCfg = Debug|Win32
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Debug|x86.Build.0 = Debug|Win32
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Release|x64.ActiveCfg = Release|x64
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Release|x64.Build.0 = Release|x64
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Release|x86.ActiveCfg = Release|Win32
+		{62A53999-70D1-4414-A11C-628BBA20AFDA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
