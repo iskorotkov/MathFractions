@@ -21,24 +21,7 @@ public:
 	unsigned int get_denominator() const;
 	number_sign get_sign() const;
 
-	bool is_positive() const;
-	bool is_negative() const;
-	bool is_zero() const;
-	bool is_common() const;
-
-	std::string to_string() const;
-
-private:
-	fraction(unsigned int numerator, unsigned int denominator, number_sign sign = number_sign::positive) : numerator(numerator), denominator(denominator), sign(sign) {}
-
-	unsigned int numerator = 1;
-	unsigned int denominator = 1;
-	number_sign sign = number_sign::positive;
-
-	fraction& reduce();
-};
-
-// 	// Relations
+	// 	// Relations
 // 	bool operator==(const fraction& f) const;
 // 	bool operator!=(const fraction& f) const;
 // 	bool operator<(const fraction& f) const;
@@ -52,5 +35,24 @@ private:
 // 	fraction& operator*(const fraction& f);
 // 	fraction& operator/(const fraction& f);
 // 	fraction& operator%(const fraction& f);
+
+	// Conversions
+	operator std::string() const;
+	explicit operator double() const;
+
+	bool is_positive() const;
+	bool is_negative() const;
+	bool is_zero() const;
+	bool is_common() const;
+
+private:
+	fraction(unsigned int numerator, unsigned int denominator, number_sign sign = number_sign::positive) : numerator(numerator), denominator(denominator), sign(sign) {}
+
+	unsigned int numerator = 1;
+	unsigned int denominator = 1;
+	number_sign sign = number_sign::positive;
+
+	fraction& reduce();
+};
 
 std::ostream& operator<<(std::ostream& stream, const fraction& f);

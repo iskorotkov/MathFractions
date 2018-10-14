@@ -7,6 +7,8 @@ int main()
 	std::cin >> a >> b;
 	auto f = fraction::create_fraction(a, b);
 	std::cout << int(f.get_sign()) << " " << f.get_numerator() << " " << f.get_denominator() << std::endl;
-	std::cout << f.to_string() << std::endl;
 	std::cout << f << std::endl;
+	std::string s(f);
+	std::cout << s << std::endl;
+	std::cout
 }

@@ -50,7 +50,20 @@ bool fraction::is_common() const
 	return numerator < denominator;
 }
 
-std::string fraction::to_string() const
+fraction::operator double() const
+{
+	return double(sign) * numerator / denominator;
+}
+
+fraction& fraction::reduce()
+{
+	auto gcd = fraction_utility::greatest_common_divider(numerator, denominator);
+	numerator /= gcd;
+	denominator /= gcd;
+	return *this;
+}
+
+fraction::operator std::string() const
 {
 	if (sign == number_sign::zero)
 	{
@@ -68,16 +81,7 @@ std::string fraction::to_string() const
 	}
 }
 
-fraction& fraction::reduce()
-{
-	auto gcd = fraction_utility::greatest_common_divider(numerator, denominator);
-	numerator /= gcd;
-	denominator /= gcd;
-	return *this;
-}
-
 std::ostream& operator<<(std::ostream& stream, const fraction& f)
 {
-	stream << f.to_string();
-	return stream;
+	return stream << std::string(f);
 }
