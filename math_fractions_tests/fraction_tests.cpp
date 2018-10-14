@@ -184,3 +184,146 @@ namespace fraction_conversions
 		}
 	};
 }
+
+namespace fraction_comparison
+{
+	TEST_CLASS(equality)
+	{
+	public:
+		TEST_METHOD(two_positive_equal_fractions)
+		{
+			auto f = fraction::create_fraction(3, 5);
+			auto f2 = fraction::create_fraction(3, 5);
+			Assert::IsTrue(f == f2);
+			Assert::IsFalse(f != f2);
+		}
+
+		TEST_METHOD(two_negative_equal_fractions)
+		{
+			auto f = fraction::create_fraction(-4, 5);
+			auto f2 = fraction::create_fraction(-4, 5);
+			Assert::IsTrue(f == f2);
+			Assert::IsFalse(f != f2);
+		}
+
+		TEST_METHOD(two_positive_unequal_fractions)
+		{
+			auto f = fraction::create_fraction(9, 18);
+			auto f2 = fraction::create_fraction(6, 8);
+			Assert::IsFalse(f == f2);
+			Assert::IsTrue(f != f2);
+		}
+
+		TEST_METHOD(two_negative_unequal_fractions)
+		{
+			auto f = fraction::create_fraction(-6, 18);
+			auto f2 = fraction::create_fraction(6, -12);
+			Assert::IsFalse(f == f2);
+			Assert::IsTrue(f != f2);
+		}
+
+		TEST_METHOD(positive_and_negative_fraction)
+		{
+			auto f = fraction::create_fraction(-9, 18);
+			auto f2 = fraction::create_fraction(4, 8);
+			Assert::IsFalse(f == f2);
+			Assert::IsTrue(f != f2);
+		}
+
+		TEST_METHOD(positive_and_zero_fractions)
+		{
+			auto f = fraction::create_fraction(0, 18);
+			auto f2 = fraction::create_fraction(4, 8);
+			Assert::IsFalse(f == f2);
+			Assert::IsTrue(f != f2);
+		}
+
+		TEST_METHOD(negative_and_zero_fractions)
+		{
+			auto f = fraction::create_fraction(-9, 18);
+			auto f2 = fraction::create_fraction(0, 8);
+			Assert::IsFalse(f == f2);
+			Assert::IsTrue(f != f2);
+		}
+
+		TEST_METHOD(two_zero_fractions)
+		{
+			auto f = fraction::create_fraction(0, 18);
+			auto f2 = fraction::create_fraction(0, 8);
+			Assert::IsTrue(f == f2);
+			Assert::IsFalse(f != f2);
+		}
+	};
+
+	TEST_CLASS(comparison)
+	{
+	public:
+		TEST_METHOD(two_positive)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto f2 = fraction::create_fraction(3, 6);
+			Assert::IsTrue(f > f2);
+			Assert::IsFalse(f < f2);
+		}
+
+		TEST_METHOD(two_negative)
+		{
+			auto f = fraction::create_fraction(-4, 5);
+			auto f2 = fraction::create_fraction(-3, 2);
+			Assert::IsTrue(f > f2);
+			Assert::IsFalse(f < f2);
+		}
+
+		TEST_METHOD(positive_and_negative)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto f2 = fraction::create_fraction(-3, 2);
+			Assert::IsTrue(f > f2);
+			Assert::IsFalse(f < f2);
+		}
+
+		TEST_METHOD(positive_and_zero)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto f2 = fraction::create_fraction(0, 2);
+			Assert::IsTrue(f > f2);
+			Assert::IsFalse(f < f2);
+		}
+
+		TEST_METHOD(negative_and_zero)
+		{
+			auto f = fraction::create_fraction(0, 5);
+			auto f2 = fraction::create_fraction(-3, 2);
+			Assert::IsTrue(f > f2);
+			Assert::IsFalse(f < f2);
+		}
+	};
+
+	TEST_CLASS(comparison_and_equality)
+	{
+	public:
+		TEST_METHOD(two_positive)
+		{
+			auto f = fraction::create_fraction(4, 5);
+			auto f2 = fraction::create_fraction(3, 6);
+			Assert::IsTrue(f >= f2);
+			Assert::IsFalse(f <= f2);
+		}
+
+		TEST_METHOD(two_negative)
+		{
+			auto f = fraction::create_fraction(-4, 9);
+			auto f2 = fraction::create_fraction(-3, 6);
+			Assert::IsTrue(f >= f2);
+			Assert::IsFalse(f <= f2);
+		}
+
+		TEST_METHOD(two_zero)
+		{
+			auto f = fraction::create_fraction(0, 5);
+			auto f2 = fraction::create_fraction(0, 6);
+			Assert::IsTrue(f >= f2);
+			Assert::IsTrue(f <= f2);
+		}
+	};
+}

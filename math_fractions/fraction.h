@@ -21,22 +21,22 @@ public:
 	unsigned int get_denominator() const;
 	number_sign get_sign() const;
 
-	// 	// Relations
-// 	bool operator==(const fraction& f) const;
-// 	bool operator!=(const fraction& f) const;
-// 	bool operator<(const fraction& f) const;
-// 	bool operator>(const fraction& f) const;
-// 	bool operator<=(const fraction& f) const;
-// 	bool operator>=(const fraction& f) const;
-//
-// 	// Arithmetic
-// 	fraction& operator+(const fraction& f);
-// 	fraction& operator-(const fraction& f);
-// 	fraction& operator*(const fraction& f);
-// 	fraction& operator/(const fraction& f);
-// 	fraction& operator%(const fraction& f);
+	// Relations
+	bool operator==(const fraction& f) const;
+	bool operator!=(const fraction& f) const;
+	bool operator<(const fraction& f) const;
+	bool operator>(const fraction& f) const;
+	bool operator<=(const fraction& f) const;
+	bool operator>=(const fraction& f) const;
 
-	// Conversions
+	// 	// Arithmetic
+	// 	fraction& operator+(const fraction& f);
+	// 	fraction& operator-(const fraction& f);
+	// 	fraction& operator*(const fraction& f);
+	// 	fraction& operator/(const fraction& f);
+	// 	fraction& operator%(const fraction& f);
+
+		// Conversions
 	operator std::string() const;
 	explicit operator double() const;
 

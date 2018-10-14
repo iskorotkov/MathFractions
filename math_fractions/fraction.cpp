@@ -35,6 +35,40 @@ fraction::number_sign fraction::get_sign() const
 	return sign;
 }
 
+bool fraction::operator<(const fraction& f) const
+{
+	// TODO: use more precise method (w/o doubles)
+	return double(*this) < double(f);
+}
+
+bool fraction::operator>(const fraction& f) const
+{
+	// TODO: use more precise method (w/o doubles)
+	return double(*this) > double(f);
+}
+
+bool fraction::operator>=(const fraction& f) const
+{
+	return *this == f || *this > f;
+}
+
+bool fraction::operator<=(const fraction& f) const
+{
+	return *this == f || *this < f;
+}
+
+bool fraction::operator!=(const fraction& f) const
+{
+	return !(*this == f);
+}
+
+bool fraction::operator==(const fraction& f) const
+{
+	return sign == f.sign
+		&& numerator == f.numerator
+		&& denominator == f.denominator;
+}
+
 bool fraction::is_positive() const
 {
 	return sign == number_sign::positive;
