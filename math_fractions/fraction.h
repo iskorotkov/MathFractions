@@ -1,4 +1,8 @@
 #pragma once
+
+class ostream;
+class string;
+
 class fraction
 {
 	enum class number_sign : char { zero = 0, positive = 1, negative = -1 };
@@ -12,24 +16,35 @@ public:
 
 	// Factory
 	static fraction&& create_fraction(int numerator, int denominator);
+	//
+	// 	// Relations
+	// 	bool operator==(const fraction& f) const;
+	// 	bool operator!=(const fraction& f) const;
+	// 	bool operator<(const fraction& f) const;
+	// 	bool operator>(const fraction& f) const;
+	// 	bool operator<=(const fraction& f) const;
+	// 	bool operator>=(const fraction& f) const;
+	//
+	// 	// Arithmetic
+	// 	fraction& operator+(const fraction& f);
+	// 	fraction& operator-(const fraction& f);
+	// 	fraction& operator*(const fraction& f);
+	// 	fraction& operator/(const fraction& f);
+	// 	fraction& operator%(const fraction& f);
 
-	// Relations
-	bool operator==(const fraction& f) const;
-	bool operator!=(const fraction& f) const;
-	bool operator<(const fraction& f) const;
-	bool operator>(const fraction& f) const;
-	bool operator<=(const fraction& f) const;
-	bool operator>=(const fraction& f) const;
+	/*void operator<<(ostream& stream) const;*/
 
-	// Arithmetic
-	fraction& operator+(const fraction& f);
-	fraction& operator-(const fraction& f);
-	fraction& operator*(const fraction& f);
-	fraction& operator/(const fraction& f);
-	fraction& operator%(const fraction& f);
+	// Getters
+	unsigned int get_numerator() const;
+	unsigned int get_denominator() const;
+	number_sign get_sign() const;
 
-	bool is_common() const;
 	bool is_positive() const;
+	bool is_negative() const;
+	bool is_zero() const;
+	bool is_common() const;
+
+	/*std::string to_string() const;*/
 
 private:
 	fraction(unsigned int numerator, unsigned int denominator, number_sign sign = number_sign::positive) : numerator(numerator), denominator(denominator), sign(sign) {}

@@ -77,6 +77,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -116,9 +119,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="fraction.h" />
+    <ClInclude Include="fraction_utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="fraction.cpp" />
+    <ClCompile Include="fraction_utility.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
