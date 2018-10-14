@@ -17,9 +17,6 @@ public:
 	fraction& operator=(fraction&& f) = default;
 	fraction& operator=(const fraction& f) = default;
 
-	// Factory
-	static fraction create_fraction(int numerator, int denominator);
-
 	// Getters
 	// TODO: inline methods
 	unsigned int get_numerator() const;

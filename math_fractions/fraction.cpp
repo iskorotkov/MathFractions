@@ -7,12 +7,6 @@
 #include <exception>
 #include "fraction_utility.h"
 
-// TODO: Obsolete factory method
-fraction fraction::create_fraction(int numerator, int denominator)
-{
-	return fraction(numerator, denominator);
-}
-
 unsigned int fraction::get_numerator() const
 {
 	return numerator;
@@ -57,7 +51,6 @@ fraction& fraction::operator+(const fraction& f)
 	{
 		return *this;
 	}
-
 	auto gcd = fraction_utility::greatest_common_divisor(*this, f);
 	auto multiplier_for_this = f.get_denominator() / gcd;
 	auto multiplier_for_other = get_denominator() / gcd;
@@ -75,7 +68,7 @@ fraction& fraction::operator+(const fraction& f)
 
 fraction& fraction::operator+(const int& n)
 {
-	return *this + create_fraction(n, 1);
+	return *this + fraction(n, 1);
 }
 
 fraction& fraction::operator-(const fraction& f)
@@ -105,7 +98,7 @@ fraction& fraction::operator*(const fraction& f)
 
 fraction& fraction::operator*(const int& n)
 {
-	return *this * create_fraction(n, 1);
+	return *this * fraction(n, 1);
 }
 
 fraction& fraction::operator/(const fraction& f)
@@ -128,7 +121,7 @@ fraction& fraction::operator/(const int& n)
 		// TODO: create exception class
 		throw std::exception("Division by zero");
 	}
-	return *this / create_fraction(n, 1);
+	return *this / fraction(n, 1);
 }
 
 fraction& fraction::operator-=(const int& n)
