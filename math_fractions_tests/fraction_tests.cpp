@@ -1,5 +1,4 @@
 #include "CppUnitTest.h"
-#include "../math_fractions/fraction.h"
 #include "../math_fractions/fraction.cpp"
 #include "../math_fractions/fraction_utility.cpp"
 

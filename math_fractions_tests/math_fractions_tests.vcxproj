@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="fraction_tests.cpp" />
+    <ClCompile Include="fraction_utility_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\math_fractions\math_fractions.vcxproj">
