@@ -1,0 +1,5 @@
+v0.1.0
+14.10.2018
+- arithmetic operations on fractions
+- conversion to string or to double
+- test coverage
