@@ -45,7 +45,7 @@ bool fraction::operator>=(const fraction& f) const
 	return *this == f || *this > f;
 }
 
-fraction& fraction::operator+(const fraction& f)
+fraction fraction::operator+(const fraction& f) const
 {
 	if (f.is_zero())
 	{
@@ -57,21 +57,21 @@ fraction& fraction::operator+(const fraction& f)
 
 	int numerator_value = get_sign_value()*get_numerator()*multiplier_for_this + f.get_sign_value()*f.get_numerator()*multiplier_for_other;
 
-	sign = numerator_value > 0 ? number_sign::positive :
+	auto result_sign = numerator_value > 0 ? number_sign::positive :
 		numerator_value < 0 ? number_sign::negative :
 		number_sign::zero;
-	numerator = abs(numerator_value);
-	denominator = denominator * multiplier_for_this;
+	auto result_numerator = abs(numerator_value);
+	auto result_denominator = denominator * multiplier_for_this;
 
-	return this->reduce();
+	return fraction(result_numerator, result_denominator, result_sign).reduce();
 }
 
-fraction& fraction::operator+(const int& n)
+fraction fraction::operator+(const int& n) const
 {
 	return *this + fraction(n, 1);
 }
 
-fraction& fraction::operator-(const fraction& f)
+fraction fraction::operator-(const fraction& f) const
 {
 	auto negative_f = f;
 	negative_f.sign = f.is_positive() ? number_sign::negative :
@@ -79,29 +79,29 @@ fraction& fraction::operator-(const fraction& f)
 	return *this + negative_f;
 }
 
-fraction& fraction::operator-(const int& n)
+fraction fraction::operator-(const int& n) const
 {
 	return *this + (-n);
 }
 
-fraction& fraction::operator*(const fraction& f)
+fraction fraction::operator*(const fraction& f) const
 {
-	numerator *= f.get_numerator();
-	denominator *= f.get_denominator();
+	auto result_numerator = get_numerator() * f.get_numerator();
+	auto result_denominator = get_denominator() * f.get_denominator();
 	auto sign_mul = get_sign_value()*f.get_sign_value();
 	// TODO: extract method
-	sign = sign_mul > 0 ? number_sign::positive :
+	auto result_sign = sign_mul > 0 ? number_sign::positive :
 		sign_mul < 0 ? number_sign::negative :
 		number_sign::zero;
-	return this->reduce();
+	return fraction(result_numerator, result_denominator, result_sign).reduce();
 }
 
-fraction& fraction::operator*(const int& n)
+fraction fraction::operator*(const int& n) const
 {
 	return *this * fraction(n, 1);
 }
 
-fraction& fraction::operator/(const fraction& f)
+fraction fraction::operator/(const fraction& f) const
 {
 	if (f.get_numerator() == 0)
 	{
@@ -114,7 +114,7 @@ fraction& fraction::operator/(const fraction& f)
 	return *this * reversed_f;
 }
 
-fraction& fraction::operator/(const int& n)
+fraction fraction::operator/(const int& n) const
 {
 	if (n == 0)
 	{
@@ -126,22 +126,26 @@ fraction& fraction::operator/(const int& n)
 
 fraction& fraction::operator-=(const int& n)
 {
-	return *this - n;
+	*this = *this - n;
+	return *this;
 }
 
 fraction& fraction::operator+=(const int& n)
 {
-	return *this + n;
+	*this = *this + n;
+	return *this;
 }
 
 fraction& fraction::operator-=(const fraction& f)
 {
-	return *this - f;
+	*this = *this - f;
+	return *this;
 }
 
 fraction& fraction::operator+=(const fraction& f)
 {
-	return *this + f;
+	*this = *this + f;
+	return *this;
 }
 
 bool fraction::operator<=(const fraction& f) const

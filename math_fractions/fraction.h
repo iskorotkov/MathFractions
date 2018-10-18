@@ -33,17 +33,17 @@ public:
 	bool operator>=(const fraction& f) const;
 
 	// Arithmetic
-	fraction& operator+(const fraction& f);
-	fraction& operator-(const fraction& f);
-	fraction& operator*(const fraction& f);
-	fraction& operator/(const fraction& f);
+	fraction operator+(const fraction& f) const;
+	fraction operator-(const fraction& f) const;
+	fraction operator*(const fraction& f) const;
+	fraction operator/(const fraction& f) const;
 	fraction& operator+=(const fraction& f);
 	fraction& operator-=(const fraction& f);
 
-	fraction& operator+(const int& n);
-	fraction& operator-(const int& n);
-	fraction& operator*(const int& n);
-	fraction& operator/(const int& n);
+	fraction operator+(const int& n) const;
+	fraction operator-(const int& n) const;
+	fraction operator*(const int& n) const;
+	fraction operator/(const int& n) const;
 	fraction& operator+=(const int& n);
 	fraction& operator-=(const int& n);
 
